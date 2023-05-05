@@ -1,0 +1,47 @@
+@startuml
+
+interface PilotCompass{
++ hasCompass(){} :  boolean
+}
+
+class Flight implements PilotCompass{
+- id : UUID;
+- language : Language
+- employees : List<Employee>
+
++ areAttendantsSameLanguage(Language){} : boolean
++ isCrewComplete(){} : boolean
+}
+
+class FlightAttendant extends Employee{
+- language : Language
+}
+class Pilot extends Employee{
+- pilotType : PilotType
+- compassAnalog : boolean
++ setCompassAnalog(){}
+}
+
+abstract class Employee{
+- name : String
+- dateOfBirth :  String
+}
+enum Language{
+ENGLISH,
+GERMAN,
+SPANISH,
+POLISH
+}
+
+enum PilotType{
+CAPTAINT,
+CO_PILOT
+}
+
+FlightAttendant -- Language
+Pilot -- PilotType
+Flight --> Employee
+
+
+
+@enduml
